@@ -61,7 +61,7 @@ const Navbar = () => {
 
   return (
     <header className="w-full">
-      {/* Top bar with logo */}
+      {/* Top bar with logo and main nav */}
       <div className="bg-secondary">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between py-4">
@@ -73,15 +73,8 @@ const Navbar = () => {
                 <p className="text-xs text-white/80 tracking-widest">UNIVERSITY</p>
               </div>
             </a>
-          </div>
-        </div>
-      </div>
 
-      {/* Navigation bar - matching screenshot layout */}
-      <nav className="bg-secondary border-t border-white/10">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between">
-            {/* Main Navigation Links - Left side */}
+            {/* Main Navigation Links - beside logo */}
             <div className="hidden lg:flex items-center">
               {mainLinks.map((link) => (
                 <div
@@ -115,7 +108,14 @@ const Navbar = () => {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </div>
 
+      {/* Quick Links bar */}
+      <nav className="bg-secondary border-t border-white/10">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-end">
             {/* Quick Links & Search - Right side */}
             <div className="hidden lg:flex items-center gap-1">
               {quickLinks.map((link, index) => (
