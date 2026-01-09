@@ -64,7 +64,7 @@ const Navbar = () => {
       {/* Top bar with logo and main nav */}
       <div className="bg-secondary">
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between py-4">
+          <div className="flex items-center py-4 gap-12">
             {/* Logo */}
             <a href="/" className="flex items-center gap-3">
               <img src={logo} alt="ANUCDE Logo" className="h-16 w-auto" />
