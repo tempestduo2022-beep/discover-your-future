@@ -1,7 +1,33 @@
-import { FileText, Calendar, Phone, Award, Users, BookOpen, MapPin } from "lucide-react";
-import campusImage from "@/assets/campus-main.png";
+import { useState, useEffect, useCallback } from "react";
+import { FileText, Calendar, Phone, Award, Users, BookOpen, MapPin, ChevronLeft, ChevronRight } from "lucide-react";
+import campusMain from "@/assets/campus-main.png";
+import campusCde from "@/assets/campus-cde.png";
+import workshopImg from "@/assets/workshop.png";
 
 const HeroSection = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const slides = [
+    {
+      image: campusMain,
+      subtitle: "DISTANCE EDUCATION",
+      title: "ADMISSIONS OPEN FOR 2025-26",
+      description: "Shape your future with quality distance education from a NAAC A+ accredited university",
+    },
+    {
+      image: campusCde,
+      subtitle: "EXCELLENCE IN EDUCATION",
+      title: "CENTRE FOR DISTANCE EDUCATION",
+      description: "Acharya Nagarjuna University - Empowering learners across the nation",
+    },
+    {
+      image: workshopImg,
+      subtitle: "LEARN & GROW",
+      title: "WORKSHOPS & SEMINARS",
+      description: "Participate in interactive sessions with industry experts and faculty",
+    },
+  ];
+
   const quickActions = [
     { icon: FileText, label: "Apply Now", sublabel: "Start your application", primary: true },
     { icon: FileText, label: "Brochure", sublabel: "Download prospectus" },
@@ -16,49 +42,88 @@ const HeroSection = () => {
     { icon: MapPin, value: "80+", label: "Study Centres" },
   ];
 
+  const nextSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  }, [slides.length]);
+
+  const prevSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  }, [slides.length]);
+
+  useEffect(() => {
+    const interval = setInterval(nextSlide, 5000);
+    return () => clearInterval(interval);
+  }, [nextSlide]);
+
   return (
     <section className="relative">
-      {/* Hero Background */}
+      {/* Hero Carousel */}
       <div className="relative h-[500px] overflow-hidden">
-        <img
-          src={campusImage}
-          alt="ANUCDE Campus"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-secondary/80 to-secondary/40" />
-        
+        {slides.map((slide, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 transition-opacity duration-700 ${
+              index === currentSlide ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <img
+              src={slide.image}
+              alt={slide.title}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-secondary/80 to-secondary/40" />
+          </div>
+        ))}
+
         {/* Slide indicators */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-          <span className="w-8 h-1 bg-white rounded-full" />
-          <span className="w-8 h-1 bg-white/40 rounded-full" />
-          <span className="w-8 h-1 bg-white/40 rounded-full" />
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`w-8 h-1 rounded-full transition-colors ${
+                index === currentSlide ? "bg-white" : "bg-white/40"
+              }`}
+            />
+          ))}
         </div>
 
         {/* Navigation arrows */}
-        <button className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors">
-          ‹
+        <button
+          onClick={prevSlide}
+          className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors z-10"
+        >
+          <ChevronLeft className="w-6 h-6" />
         </button>
-        <button className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors">
-          ›
+        <button
+          onClick={nextSlide}
+          className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors z-10"
+        >
+          <ChevronRight className="w-6 h-6" />
         </button>
 
         {/* Hero Content */}
-        <div className="absolute inset-0 flex items-center">
+        <div className="absolute inset-0 flex items-center z-10">
           <div className="container mx-auto px-4">
             <div className="max-w-2xl">
-              <p className="text-primary text-sm font-semibold mb-2 tracking-wider">DISTANCE EDUCATION</p>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4" style={{ fontFamily: 'Merriweather, serif' }}>
-                ADMISSIONS OPEN FOR 2025-26
+              <p className="text-primary text-sm font-semibold mb-2 tracking-wider">
+                {slides[currentSlide].subtitle}
+              </p>
+              <h1
+                className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4"
+                style={{ fontFamily: "Merriweather, serif" }}
+              >
+                {slides[currentSlide].title}
               </h1>
               <p className="text-white/90 text-lg mb-8">
-                Shape your future with quality distance education from a NAAC A+ accredited university
+                {slides[currentSlide].description}
               </p>
             </div>
           </div>
         </div>
 
         {/* Orange corner decoration */}
-        <div className="absolute top-0 right-0 w-24 h-24">
+        <div className="absolute top-0 right-0 w-24 h-24 z-10">
           <div className="absolute top-4 right-4 w-12 h-12 border-2 border-primary rounded-full flex items-center justify-center">
             <div className="w-6 h-6 bg-primary rounded-full" />
           </div>
