@@ -22,7 +22,6 @@ const Navbar = () => {
       items: [
         { label: "Undergraduate (UG) Courses", href: "#" },
         { label: "Postgraduate (PG) Courses", href: "#" },
-        { label: "MBA & MCA Programmes", href: "#" },
         { label: "Diploma & PG Diploma", href: "#" },
         { label: "Certificate Courses", href: "#" },
         { label: "Syllabus & Study Material", href: "#" },
@@ -35,7 +34,6 @@ const Navbar = () => {
         { label: "Examination Schedules", href: "#" },
         { label: "Workshop & Seminar Updates", href: "#" },
         { label: "Academic Calendar", href: "#" },
-        { label: "Press Releases", href: "#" },
         { label: "Photo Gallery", href: "#" },
       ],
     },
@@ -53,7 +51,7 @@ const Navbar = () => {
   ];
 
   const quickLinks = [
-    { label: "Student Portal", href: "#" },
+    { label: "Student Portal", href: "/student-portal" },
     { label: "Employee Services", href: "#" },
     { label: "Alumni", href: "#" },
     { label: "Study Centres", href: "#" },
