@@ -1,11 +1,11 @@
 import StudentPortalNavbar from "@/components/StudentPortalNavbar";
-import { BookOpen, CreditCard, Calendar, FileText, HelpCircle, ExternalLink } from "lucide-react";
+import { BookOpen, CreditCard, Calendar, FileText, HelpCircle, ExternalLink, ClipboardList, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const StudentPortal = () => {
   const quickServices = [
     { label: "Student Self Service", icon: ExternalLink, primary: true },
-    { label: "E-Learning Portal", icon: BookOpen },
+    { label: "Exam Application", icon: ClipboardList },
     { label: "Email", icon: FileText },
     { label: "Library", icon: BookOpen },
   ];
@@ -35,10 +35,11 @@ const StudentPortal = () => {
     { label: "FAQs", icon: HelpCircle },
   ];
 
-  const termDates = [
-    { term: "Spring Semester 2026", start: "15 Jan 2026", end: "15 May 2026" },
-    { term: "Summer Term 2026", start: "1 Jun 2026", end: "31 Jul 2026" },
-    { term: "Fall Semester 2026", start: "1 Aug 2026", end: "30 Nov 2026" },
+  const quickActions = [
+    { label: "Download Hall Ticket", icon: FileText, href: "#" },
+    { label: "Check Exam Results", icon: GraduationCap, href: "#" },
+    { label: "Pay Fee Dues", icon: CreditCard, href: "#" },
+    { label: "Submit Grievance", icon: ClipboardList, href: "#" },
   ];
 
   return (
@@ -110,28 +111,24 @@ const StudentPortal = () => {
                 ))}
               </div>
 
-              {/* Term Dates */}
+              {/* Quick Actions */}
               <div className="mt-10">
-                <h2 className="text-2xl font-bold text-foreground mb-6">Term Dates</h2>
-                <div className="bg-card border border-border rounded-lg overflow-hidden">
-                  <table className="w-full">
-                    <thead className="bg-muted">
-                      <tr>
-                        <th className="text-left px-4 py-3 text-sm font-semibold text-foreground">Term</th>
-                        <th className="text-left px-4 py-3 text-sm font-semibold text-foreground">Start Date</th>
-                        <th className="text-left px-4 py-3 text-sm font-semibold text-foreground">End Date</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {termDates.map((term, index) => (
-                        <tr key={index} className="border-t border-border">
-                          <td className="px-4 py-3 text-sm text-foreground">{term.term}</td>
-                          <td className="px-4 py-3 text-sm text-muted-foreground">{term.start}</td>
-                          <td className="px-4 py-3 text-sm text-muted-foreground">{term.end}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                <h2 className="text-2xl font-bold text-foreground mb-6">Quick Actions</h2>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {quickActions.map((action, index) => (
+                    <a
+                      key={index}
+                      href={action.href}
+                      className="flex items-center gap-4 p-4 bg-card border border-border rounded-lg hover:border-primary hover:shadow-md transition-all group"
+                    >
+                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                        <action.icon className="w-6 h-6 text-primary group-hover:text-white" />
+                      </div>
+                      <span className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                        {action.label}
+                      </span>
+                    </a>
+                  ))}
                 </div>
               </div>
             </div>
