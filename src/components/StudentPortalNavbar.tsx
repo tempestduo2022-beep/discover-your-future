@@ -26,10 +26,20 @@ const StudentPortalNavbar = () => {
       label: "ACADEMIC MATTERS",
       items: [
         { label: "Course Registration", href: "#" },
-        { label: "Exam Schedules", href: "#" },
-        { label: "Results & Grades", href: "#" },
         { label: "Study Materials", href: "#" },
+        { label: "PCP Classes Timetable", href: "#" },
+        { label: "Results & Grades", href: "#" },
         { label: "Assignment Submission", href: "#" },
+      ],
+    },
+    {
+      label: "EXAMINATIONS",
+      items: [
+        { label: "Exam Application", href: "#" },
+        { label: "Exam Timetable", href: "#" },
+        { label: "Exam Center", href: "#" },
+        { label: "Hall Tickets", href: "#" },
+        { label: "Revaluation Application", href: "#" },
       ],
     },
     {
@@ -37,6 +47,7 @@ const StudentPortalNavbar = () => {
       items: [
         { label: "Fee Payment", href: "#" },
         { label: "Fee Structure", href: "#" },
+        { label: "Search Fee Dues", href: "#" },
         { label: "Scholarships", href: "#" },
         { label: "Payment History", href: "#" },
       ],
@@ -48,15 +59,15 @@ const StudentPortalNavbar = () => {
         { label: "Transport", href: "#" },
         { label: "Hostel", href: "#" },
         { label: "Health Services", href: "#" },
+        { label: "Certificate Verification", href: "#" },
       ],
     },
     {
       label: "RESOURCES",
       items: [
-        { label: "E-Learning Portal", href: "#" },
-        { label: "Digital Library", href: "#" },
         { label: "Previous Question Papers", href: "#" },
         { label: "Academic Calendar", href: "#" },
+        { label: "Notifications & Circulars", href: "#" },
       ],
     },
     {
@@ -65,7 +76,8 @@ const StudentPortalNavbar = () => {
         { label: "Help Desk", href: "#" },
         { label: "FAQs", href: "#" },
         { label: "Contact Study Centre", href: "#" },
-        { label: "Grievance Redressal", href: "#" },
+        { label: "Student Grievances", href: "#" },
+        { label: "Feedback Form", href: "#" },
       ],
     },
   ];
