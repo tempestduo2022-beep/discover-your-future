@@ -1,9 +1,22 @@
 import { useState } from "react";
-import { ChevronDown, Search } from "lucide-react";
+import { ChevronDown, Search, Menu, X } from "lucide-react";
 import logo from "@/assets/logo.png";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetClose,
+} from "@/components/ui/sheet";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const Navbar = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const mainLinks = [
     {
@@ -52,7 +65,7 @@ const Navbar = () => {
 
   const quickLinks = [
     { label: "Student Portal", href: "/student-portal" },
-    { label: "Employee Services", href: "#" },
+    { label: "Employee Services", href: "/employee-services" },
     { label: "Alumni", href: "#" },
     { label: "Study Centres", href: "#" },
   ];
@@ -62,17 +75,17 @@ const Navbar = () => {
       {/* Top bar with logo and main nav */}
       <div className="bg-secondary">
         <div className="container mx-auto px-4">
-          <div className="flex items-center py-4 gap-12">
+          <div className="flex items-center justify-between lg:justify-start py-4 gap-8 lg:gap-12">
             {/* Logo */}
             <a href="/" className="flex items-center gap-3">
-              <img src={logo} alt="ANUCDE Logo" className="h-16 w-auto" />
+              <img src={logo} alt="ANUCDE Logo" className="h-12 sm:h-16 w-auto" />
               <div className="text-white">
-                <h1 className="text-lg font-bold leading-tight tracking-wide">ACHARYA NAGARJUNA</h1>
-                <p className="text-xs text-white/80 tracking-widest">UNIVERSITY</p>
+                <h1 className="text-base sm:text-lg font-bold leading-tight tracking-wide">ACHARYA NAGARJUNA</h1>
+                <p className="text-[10px] sm:text-xs text-white/80 tracking-widest">UNIVERSITY</p>
               </div>
             </a>
 
-            {/* Main Navigation Links - beside logo */}
+            {/* Main Navigation Links - beside logo (Desktop) */}
             <div className="hidden lg:flex items-center">
               {mainLinks.map((link) => (
                 <div
@@ -106,16 +119,90 @@ const Navbar = () => {
                 </div>
               ))}
             </div>
+
+            {/* Mobile Menu Button */}
+            <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
+              <SheetTrigger asChild>
+                <button className="lg:hidden text-white p-2">
+                  <Menu className="w-6 h-6" />
+                </button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[300px] sm:w-[350px] bg-secondary border-l-0 p-0">
+                <div className="flex flex-col h-full">
+                  {/* Mobile Header */}
+                  <div className="flex items-center justify-between p-4 border-b border-white/10">
+                    <span className="text-white font-bold">Menu</span>
+                    <SheetClose asChild>
+                      <button className="text-white p-1">
+                        <X className="w-5 h-5" />
+                      </button>
+                    </SheetClose>
+                  </div>
+
+                  {/* Mobile Search */}
+                  <div className="p-4 border-b border-white/10">
+                    <div className="relative">
+                      <input
+                        type="text"
+                        placeholder="Search..."
+                        className="w-full bg-white/10 border border-white/20 rounded px-3 py-2 text-sm text-white placeholder:text-white/60 focus:outline-none focus:border-white/40"
+                      />
+                      <Search className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/60" />
+                    </div>
+                  </div>
+
+                  {/* Mobile Navigation */}
+                  <div className="flex-1 overflow-y-auto">
+                    <Accordion type="single" collapsible className="w-full">
+                      {mainLinks.map((link) => (
+                        <AccordionItem key={link.label} value={link.label} className="border-b border-white/10">
+                          <AccordionTrigger className="px-4 py-3 text-white text-sm font-medium hover:bg-white/10 hover:no-underline">
+                            {link.label}
+                          </AccordionTrigger>
+                          <AccordionContent className="pb-0">
+                            {link.items.map((item, idx) => (
+                              <a
+                                key={idx}
+                                href={item.href}
+                                className="block px-6 py-2.5 text-sm text-white/80 hover:bg-white/10 hover:text-white transition-colors"
+                                onClick={() => setMobileOpen(false)}
+                              >
+                                {item.label}
+                              </a>
+                            ))}
+                          </AccordionContent>
+                        </AccordionItem>
+                      ))}
+                    </Accordion>
+
+                    {/* Mobile Quick Links */}
+                    <div className="p-4 border-t border-white/10">
+                      <p className="text-white/60 text-xs mb-3 uppercase tracking-wider">Quick Links</p>
+                      {quickLinks.map((link, index) => (
+                        <a
+                          key={index}
+                          href={link.href}
+                          className="block py-2 text-sm text-white/80 hover:text-white transition-colors"
+                          onClick={() => setMobileOpen(false)}
+                        >
+                          {link.label}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </div>
 
-      {/* Quick Links bar */}
-      <nav className="bg-secondary border-t border-white/10">
+      {/* Quick Links bar (Desktop only) */}
+      <nav className="hidden lg:block bg-secondary border-t border-white/10">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-end">
             {/* Quick Links & Search - Right side */}
-            <div className="hidden lg:flex items-center gap-1">
+            <div className="flex items-center gap-1">
               {quickLinks.map((link, index) => (
                 <a
                   key={index}

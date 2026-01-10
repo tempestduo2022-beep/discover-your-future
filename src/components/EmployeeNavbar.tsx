@@ -14,7 +14,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const StudentPortalNavbar = () => {
+const EmployeeNavbar = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -27,70 +27,61 @@ const StudentPortalNavbar = () => {
 
   const portalNavLinks = [
     {
-      label: "NEW STUDENTS",
+      label: "HR & PAYROLL",
       items: [
-        { label: "Welcome Guide", href: "#" },
-        { label: "Orientation Program", href: "#" },
-        { label: "Registration Process", href: "#" },
-        { label: "ID Card & Documents", href: "#" },
+        { label: "Salary Details", href: "#" },
+        { label: "Pay Slip Download", href: "#" },
+        { label: "Leave Management", href: "#" },
+        { label: "Attendance Records", href: "#" },
+        { label: "Provident Fund", href: "#" },
       ],
     },
     {
-      label: "ACADEMIC MATTERS",
+      label: "FACULTY SUPPORT",
       items: [
-        { label: "Course Registration", href: "#" },
-        { label: "Study Materials", href: "#" },
-        { label: "PCP Classes Timetable", href: "#" },
-        { label: "Results & Grades", href: "#" },
-        { label: "Assignment Submission", href: "#" },
+        { label: "Lesson Writing Guidelines", href: "#" },
+        { label: "Study Material Submission", href: "#" },
+        { label: "Assignment Evaluation", href: "#" },
+        { label: "Academic Coordination", href: "#" },
+        { label: "Faculty Directory", href: "#" },
       ],
     },
     {
-      label: "EXAMINATIONS",
+      label: "CAREER DEVELOPMENT",
       items: [
-        { label: "Exam Application", href: "#" },
-        { label: "Exam Timetable", href: "#" },
-        { label: "Exam Center", href: "#" },
-        { label: "Hall Tickets", href: "#" },
-        { label: "Revaluation Application", href: "#" },
+        { label: "Training Programs", href: "#" },
+        { label: "Workshops & Seminars", href: "#" },
+        { label: "Management Development", href: "#" },
+        { label: "Skill Enhancement", href: "#" },
+        { label: "Certifications", href: "#" },
       ],
     },
     {
-      label: "FEES & FUNDING",
+      label: "ADMINISTRATION",
       items: [
-        { label: "Fee Payment", href: "#" },
-        { label: "Fee Structure", href: "#" },
-        { label: "Search Fee Dues", href: "#" },
-        { label: "Scholarships", href: "#" },
-        { label: "Payment History", href: "#" },
+        { label: "Office Orders", href: "#" },
+        { label: "Circulars & Notices", href: "#" },
+        { label: "Meeting Minutes", href: "#" },
+        { label: "Forms & Applications", href: "#" },
+        { label: "Policy Documents", href: "#" },
       ],
     },
     {
-      label: "STUDENT SERVICES",
+      label: "IT SERVICES",
       items: [
-        { label: "Library Services", href: "#" },
-        { label: "Transport", href: "#" },
-        { label: "Hostel", href: "#" },
-        { label: "Health Services", href: "#" },
-        { label: "Certificate Verification", href: "#" },
+        { label: "Email Access", href: "#" },
+        { label: "IT Help Desk", href: "#" },
+        { label: "Software Resources", href: "#" },
+        { label: "Network Access", href: "#" },
       ],
     },
     {
-      label: "RESOURCES",
+      label: "WELFARE",
       items: [
-        { label: "Previous Question Papers", href: "#" },
-        { label: "Academic Calendar", href: "#" },
-        { label: "Notifications & Circulars", href: "#" },
-      ],
-    },
-    {
-      label: "SUPPORT",
-      items: [
-        { label: "Help Desk", href: "#" },
-        { label: "FAQs", href: "#" },
-        { label: "Contact Study Centre", href: "#" },
-        { label: "Student Grievances", href: "#" },
-        { label: "Feedback Form", href: "#" },
+        { label: "Health & Safety", href: "#" },
+        { label: "Employee Benefits", href: "#" },
+        { label: "Retirement Benefits", href: "#" },
+        { label: "Grievance Redressal", href: "#" },
       ],
     },
   ];
@@ -141,7 +132,7 @@ const StudentPortalNavbar = () => {
                   <div className="flex flex-col h-full">
                     {/* Mobile Header */}
                     <div className="flex items-center justify-between p-4 border-b border-white/10">
-                      <span className="text-white font-bold">Student Portal</span>
+                      <span className="text-white font-bold">Employee Portal</span>
                       <SheetClose asChild>
                         <button className="text-white p-1">
                           <X className="w-5 h-5" />
@@ -214,8 +205,8 @@ const StudentPortalNavbar = () => {
           <div className="flex items-center gap-3 sm:gap-4">
             <img src={logo} alt="ANUCDE Logo" className="h-10 sm:h-14 w-auto" />
             <div className="text-white">
-              <h1 className="text-lg sm:text-2xl font-bold tracking-wide">ANUCDE STUDENTS</h1>
-              <p className="text-[10px] sm:text-xs text-white/70">Centre for Distance Education</p>
+              <h1 className="text-lg sm:text-2xl font-bold tracking-wide">ANUCDE STAFF</h1>
+              <p className="text-[10px] sm:text-xs text-white/70">Employee Services Portal</p>
             </div>
           </div>
         </div>
@@ -263,4 +254,4 @@ const StudentPortalNavbar = () => {
   );
 };
 
-export default StudentPortalNavbar;
+export default EmployeeNavbar;
