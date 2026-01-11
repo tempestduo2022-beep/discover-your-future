@@ -242,7 +242,7 @@ const StudentPortalNavbar = () => {
 
                 {/* Dropdown Menu */}
                 {activeDropdown === link.label && (
-                  <div className="absolute top-full left-0 min-w-[200px] bg-white shadow-lg border border-border z-50 animate-fade-in">
+                  <div className="absolute top-full left-0 min-w-[220px] bg-white shadow-lg border border-border z-50">
                     {link.items.map((item, idx) => (
                       <a
                         key={idx}
