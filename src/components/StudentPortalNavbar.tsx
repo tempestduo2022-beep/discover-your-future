@@ -222,27 +222,26 @@ const StudentPortalNavbar = () => {
       </div>
 
       {/* Portal Navigation (Desktop) */}
-      <nav className="hidden lg:block bg-secondary/90 border-t border-white/10">
+      <nav className="hidden lg:block bg-secondary/90 border-t border-white/10 relative">
         <div className="container mx-auto px-4">
-          <div className="flex items-center overflow-x-auto">
+          <div className="flex items-center">
             {portalNavLinks.map((link) => (
               <div
                 key={link.label}
-                className="relative flex-shrink-0"
+                className="relative"
                 onMouseEnter={() => setActiveDropdown(link.label)}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
-                <a
-                  href="#"
+                <button
                   className="flex items-center gap-1 px-4 py-3 text-white text-xs font-medium hover:bg-white/10 transition-colors whitespace-nowrap"
                 >
                   {link.label}
-                  <ChevronDown className="w-3 h-3" />
-                </a>
+                  <ChevronDown className={`w-3 h-3 transition-transform ${activeDropdown === link.label ? 'rotate-180' : ''}`} />
+                </button>
 
                 {/* Dropdown Menu */}
                 {activeDropdown === link.label && (
-                  <div className="absolute top-full left-0 min-w-[220px] bg-white shadow-lg border border-border z-50">
+                  <div className="absolute top-full left-0 min-w-[220px] bg-white shadow-xl border border-border z-[100]">
                     {link.items.map((item, idx) => (
                       <a
                         key={idx}
