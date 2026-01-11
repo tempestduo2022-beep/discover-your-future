@@ -1,8 +1,11 @@
 import campusMain from "@/assets/campus-main.png";
 import campusCde from "@/assets/campus-cde.png";
 import workshop from "@/assets/workshop.png";
+import useScrollAnimation from "@/hooks/useScrollAnimation";
 
 const DiscoverSection = () => {
+  const { ref: sectionRef, isVisible } = useScrollAnimation(0.1);
+
   const discoverItems = [
     {
       image: campusCde,
@@ -37,17 +40,18 @@ const DiscoverSection = () => {
   ];
 
   return (
-    <section className="py-16 bg-background">
+    <section ref={sectionRef} className="py-12 sm:py-16 bg-background overflow-hidden">
       <div className="container mx-auto px-4">
-        <h2 className="section-title mb-8">DISCOVER</h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        <h2 className={`section-title mb-6 sm:mb-8 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}>DISCOVER</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
           {discoverItems.map((item, index) => (
             <a
               key={index}
               href={item.link}
-              className="group block"
+              className={`group block ${isVisible ? 'animate-scale-in' : 'opacity-0'}`}
+              style={{ animationDelay: `${index * 100 + 100}ms` }}
             >
-              <div className="aspect-square overflow-hidden rounded-lg mb-3 relative">
+              <div className="aspect-square overflow-hidden rounded-lg mb-2 sm:mb-3 relative">
                 <img
                   src={item.image}
                   alt={item.title}
@@ -55,10 +59,10 @@ const DiscoverSection = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
-              <h3 className="text-primary font-semibold text-sm mb-1 group-hover:underline">
+              <h3 className="text-primary font-semibold text-xs sm:text-sm mb-1 group-hover:underline">
                 {item.title}
               </h3>
-              <p className="text-xs text-muted-foreground line-clamp-2">
+              <p className="text-[10px] sm:text-xs text-muted-foreground line-clamp-2">
                 {item.description}
               </p>
             </a>

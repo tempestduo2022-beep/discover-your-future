@@ -72,7 +72,7 @@ const StudentPortalNavbar = () => {
         { label: "Transport", href: "#" },
         { label: "Hostel", href: "#" },
         { label: "Health Services", href: "#" },
-        { label: "Certificate Verification", href: "#" },
+        { label: "Instructions for Original Certificate Verification", href: "#" },
       ],
     },
     {
