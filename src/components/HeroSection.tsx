@@ -56,9 +56,9 @@ const HeroSection = () => {
   }, [nextSlide]);
 
   return (
-    <section className="relative">
+    <section className="relative w-full overflow-hidden">
       {/* Hero Carousel */}
-      <div className="relative h-[500px] overflow-hidden">
+      <div className="relative h-[400px] sm:h-[500px] overflow-hidden">
         {slides.map((slide, index) => (
           <div
             key={index}
@@ -131,24 +131,24 @@ const HeroSection = () => {
       </div>
 
       {/* Quick Actions & Stats Bar */}
-      <div className="bg-muted py-6">
+      <div className="bg-muted py-4 sm:py-6 overflow-x-auto">
         <div className="container mx-auto px-4">
-          <div className="flex flex-wrap items-center justify-between gap-4">
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
             {/* Quick Actions */}
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-2 sm:gap-3 w-full lg:w-auto">
               {quickActions.map((action, index) => (
                 <button
                   key={index}
-                  className={`flex items-center gap-2 px-4 py-2.5 rounded-md transition-all ${
+                  className={`flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-md transition-all text-xs sm:text-sm ${
                     action.primary
                       ? "bg-primary text-white hover:bg-primary/90"
                       : "bg-white text-foreground hover:bg-gray-50 border border-border"
                   }`}
                 >
-                  <action.icon className="w-4 h-4" />
+                  <action.icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
                   <div className="text-left">
-                    <p className="text-sm font-semibold">{action.label}</p>
-                    <p className={`text-xs ${action.primary ? "text-white/80" : "text-muted-foreground"}`}>
+                    <p className="font-semibold">{action.label}</p>
+                    <p className={`text-[10px] sm:text-xs ${action.primary ? "text-white/80" : "text-muted-foreground"} hidden sm:block`}>
                       {action.sublabel}
                     </p>
                   </div>
@@ -157,13 +157,13 @@ const HeroSection = () => {
             </div>
 
             {/* Stats */}
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-4 sm:gap-6 flex-wrap lg:flex-nowrap">
               {stats.map((stat, index) => (
                 <div key={index} className="flex items-center gap-2">
-                  <stat.icon className="w-5 h-5 text-primary" />
+                  <stat.icon className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0" />
                   <div>
-                    <p className="text-sm font-bold text-foreground">{stat.value}</p>
-                    <p className="text-xs text-muted-foreground">{stat.label}</p>
+                    <p className="text-xs sm:text-sm font-bold text-foreground">{stat.value}</p>
+                    <p className="text-[10px] sm:text-xs text-muted-foreground">{stat.label}</p>
                   </div>
                 </div>
               ))}

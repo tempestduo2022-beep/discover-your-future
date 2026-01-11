@@ -142,4 +142,45 @@
   .footer-link {
     @apply text-muted-foreground hover:text-primary transition-colors duration-200 text-sm;
   }
+
+  /* Scroll animation utilities */
+  .scroll-animate {
+    opacity: 0;
+  }
+
+  .scroll-animate.animate {
+    animation: var(--scroll-animation, fade-in) 0.6s ease-out forwards;
+  }
+
+  .scroll-fade-in {
+    --scroll-animation: fade-in;
+  }
+
+  .scroll-fade-left {
+    --scroll-animation: fade-in-left;
+  }
+
+  .scroll-fade-right {
+    --scroll-animation: fade-in-right;
+  }
+
+  .scroll-scale {
+    --scroll-animation: scale-in;
+  }
+
+  .delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .delay-400 {
+    animation-delay: 400ms;
+  }
 }
