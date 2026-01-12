@@ -66,21 +66,12 @@ const StudentPortalNavbar = () => {
       ],
     },
     {
-      label: "STUDENT SERVICES",
-      items: [
-        { label: "Library Services", href: "#" },
-        { label: "Transport", href: "#" },
-        { label: "Hostel", href: "#" },
-        { label: "Health Services", href: "#" },
-        { label: "Instructions for Original Certificate Verification", href: "#" },
-      ],
-    },
-    {
       label: "RESOURCES",
       items: [
         { label: "Previous Question Papers", href: "#" },
         { label: "Academic Calendar", href: "#" },
         { label: "Notifications & Circulars", href: "#" },
+        { label: "Instructions for Original Certificate Verification", href: "#" },
       ],
     },
     {
