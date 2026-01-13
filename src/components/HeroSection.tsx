@@ -56,9 +56,9 @@ const HeroSection = () => {
   }, [nextSlide]);
 
   return (
-    <section className="relative w-full overflow-hidden mt-5">
+    <section className="relative w-full overflow-hidden px-4 sm:px-6 lg:px-8 py-5">
       {/* Hero Carousel */}
-      <div className="relative h-[400px] sm:h-[500px] overflow-hidden">
+      <div className="relative h-[400px] sm:h-[500px] overflow-hidden rounded-xl">
         {slides.map((slide, index) => (
           <div
             key={index}
