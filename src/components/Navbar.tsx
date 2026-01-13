@@ -31,7 +31,7 @@ const Navbar = () => {
       ],
     },
     {
-      label: "PROGRAMMES",
+      label: "ACADEMICS",
       items: [
         { label: "Undergraduate (UG) Courses", href: "#" },
         { label: "Postgraduate (PG) Courses", href: "#" },
