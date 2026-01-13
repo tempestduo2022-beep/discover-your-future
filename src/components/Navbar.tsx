@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ChevronDown, Search, Menu, X } from "lucide-react";
 import logo from "@/assets/logo.png";
 import {
@@ -17,6 +17,15 @@ import {
 const Navbar = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const mainLinks = [
     {
@@ -71,11 +80,11 @@ const Navbar = () => {
   ];
 
   return (
-    <header className="w-full">
+    <header className={`w-full sticky top-0 z-50 transition-all duration-500 ease-in-out ${isScrolled ? 'shadow-lg' : ''}`}>
       {/* Top bar with logo and main nav */}
       <div className="bg-secondary">
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between lg:justify-start py-4 gap-8 lg:gap-12">
+          <div className={`flex items-center justify-between lg:justify-start py-4 gap-8 lg:gap-12 transition-all duration-500 ease-in-out ${isScrolled ? 'lg:hidden' : ''}`}>
             {/* Logo */}
             <a href="/" className="flex items-center gap-3">
               <img src={logo} alt="ANUCDE Logo" className="h-12 sm:h-16 w-auto" />
@@ -85,7 +94,7 @@ const Navbar = () => {
               </div>
             </a>
 
-            {/* Main Navigation Links - beside logo (Desktop) */}
+            {/* Main Navigation Links - beside logo (Desktop) - Hidden when not scrolled */}
             <div className="hidden lg:flex items-center">
               {mainLinks.map((link) => (
                 <div
@@ -197,8 +206,74 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Quick Links bar (Desktop only) */}
-      <nav className="hidden lg:block bg-secondary border-t border-white/10">
+      {/* Compact scrolled navbar - Desktop only */}
+      <div className={`hidden bg-secondary transition-all duration-500 ease-in-out overflow-hidden ${isScrolled ? 'lg:block max-h-20 opacity-100' : 'max-h-0 opacity-0'}`}>
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between py-2">
+            {/* All navigation in one line */}
+            <div className="flex items-center gap-1">
+              {mainLinks.map((link) => (
+                <div
+                  key={link.label}
+                  className="relative"
+                  onMouseEnter={() => setActiveDropdown(link.label)}
+                  onMouseLeave={() => setActiveDropdown(null)}
+                >
+                  <a
+                    href="#"
+                    className="flex items-center gap-1 px-3 py-2 text-white text-xs font-medium hover:bg-white/10 transition-colors rounded"
+                  >
+                    {link.label}
+                    <ChevronDown className="w-3 h-3" />
+                  </a>
+
+                  {/* Dropdown Menu */}
+                  {activeDropdown === link.label && (
+                    <div className="absolute top-full left-0 min-w-[220px] bg-white shadow-lg border border-border z-50 animate-fade-in">
+                      {link.items.map((item, idx) => (
+                        <a
+                          key={idx}
+                          href={item.href}
+                          className="block px-4 py-2.5 text-sm text-foreground hover:bg-primary hover:text-white transition-colors border-b border-border/50 last:border-b-0"
+                        >
+                          {item.label}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+
+              {/* Separator */}
+              <div className="w-px h-6 bg-white/20 mx-2" />
+
+              {/* Quick Links inline */}
+              {quickLinks.map((link, index) => (
+                <a
+                  key={index}
+                  href={link.href}
+                  className="px-3 py-2 text-white text-xs hover:bg-white/10 transition-colors rounded"
+                >
+                  {link.label}
+                </a>
+              ))}
+
+              {/* Search */}
+              <div className="relative ml-2">
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  className="bg-white/10 border border-white/20 rounded px-3 py-1.5 text-xs text-white placeholder:text-white/60 w-32 focus:outline-none focus:border-white/40 focus:w-40 transition-all"
+                />
+                <Search className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/60" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Quick Links bar (Desktop only) - Hidden when scrolled */}
+      <nav className={`hidden lg:block bg-secondary border-t border-white/10 transition-all duration-500 ease-in-out ${isScrolled ? 'max-h-0 opacity-0 overflow-hidden' : 'max-h-20 opacity-100'}`}>
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-end">
             {/* Quick Links & Search - Right side */}
