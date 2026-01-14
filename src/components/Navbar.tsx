@@ -86,9 +86,9 @@ const Navbar = () => {
         <div className="container mx-auto px-4">
           {/* Original two-row layout - visible when not scrolled (Desktop) */}
           <div 
-            className={`hidden lg:block transition-all duration-500 ease-in-out overflow-hidden ${
+            className={`hidden lg:block transition-all duration-500 ease-in-out ${
               isScrolled 
-                ? 'max-h-0 opacity-0' 
+                ? 'max-h-0 opacity-0 overflow-hidden pointer-events-none' 
                 : 'max-h-32 opacity-100'
             }`}
           >
@@ -141,10 +141,10 @@ const Navbar = () => {
 
           {/* Compact single-line navbar - visible when scrolled (Desktop) */}
           <div 
-            className={`hidden lg:block transition-all duration-500 ease-in-out overflow-hidden ${
+            className={`hidden lg:block transition-all duration-500 ease-in-out ${
               isScrolled 
                 ? 'max-h-16 opacity-100' 
-                : 'max-h-0 opacity-0'
+                : 'max-h-0 opacity-0 overflow-hidden pointer-events-none'
             }`}
           >
             <div className="flex items-center justify-between py-2">
@@ -298,9 +298,9 @@ const Navbar = () => {
 
         {/* Quick Links bar - visible when not scrolled (Desktop only) */}
         <nav 
-          className={`hidden lg:block border-t border-white/10 transition-all duration-500 ease-in-out overflow-hidden ${
+          className={`hidden lg:block border-t border-white/10 transition-all duration-500 ease-in-out ${
             isScrolled 
-              ? 'max-h-0 opacity-0' 
+              ? 'max-h-0 opacity-0 overflow-hidden pointer-events-none' 
               : 'max-h-16 opacity-100'
           }`}
         >
