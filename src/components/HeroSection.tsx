@@ -11,7 +11,7 @@ const HeroSection = () => {
     {
       image: campusMain,
       subtitle: "DISTANCE EDUCATION",
-      title: "ADMISSIONS OPEN FOR 2025-26",
+      title: "ADMISSIONS OPEN FOR 2026-27",
       description: "Shape your future with quality distance education from a NAAC A+ accredited university",
     },
     {
