@@ -31,28 +31,28 @@ const Navbar = () => {
     {
       label: "ADMISSIONS",
       items: [
-        { label: "Admission Notifications", href: "#" },
-        { label: "Online Admission Application", href: "#" },
+        { label: "Admission Notifications", href: "/admissions/notifications" },
+        { label: "UG Admissions", href: "/admissions/ug" },
+        { label: "PG Admissions", href: "/admissions/pg" },
+        { label: "Diploma & PG Diploma", href: "/admissions/diploma" },
         { label: "Fee Structure", href: "#" },
-        { label: "Entrance Examination Results", href: "#" },
-        { label: "Entrance Hall Tickets", href: "#" },
         { label: "Course-wise Eligibility", href: "#" },
       ],
     },
     {
       label: "ACADEMICS",
       items: [
-        { label: "Undergraduate (UG) Courses", href: "#" },
-        { label: "Postgraduate (PG) Courses", href: "#" },
-        { label: "Diploma & PG Diploma", href: "#" },
-        { label: "Certificate Courses", href: "#" },
+        { label: "All Programs", href: "/academics" },
+        { label: "Undergraduate (UG) Courses", href: "/admissions/ug" },
+        { label: "Postgraduate (PG) Courses", href: "/admissions/pg" },
+        { label: "Diploma & PG Diploma", href: "/admissions/diploma" },
         { label: "Syllabus & Study Material", href: "#" },
       ],
     },
     {
       label: "NEWS & EVENTS",
       items: [
-        { label: "Latest Notifications", href: "#" },
+        { label: "Latest Notifications", href: "/admissions/notifications" },
         { label: "Examination Schedules", href: "#" },
         { label: "Workshop & Seminar Updates", href: "#" },
         { label: "Academic Calendar", href: "#" },

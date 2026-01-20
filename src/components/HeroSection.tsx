@@ -71,7 +71,7 @@ const HeroSection = () => {
               alt={slide.title}
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-secondary/50 to-secondary/20" />
+            <div className="absolute inset-0 bg-gradient-to-r from-secondary/40 to-transparent" />
           </div>
         ))}
 
